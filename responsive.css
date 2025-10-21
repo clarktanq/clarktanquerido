@@ -1,0 +1,106 @@
+/* --- Tablet Styles --- */
+/* Applies to screens 768px and wider */
+@media (min-width: 768px) {
+  .content-wrapper {
+    flex-direction: row; /* Place main and aside side-by-side */
+  }
+
+  main {
+    flex: 3; /* Main content takes up 3/4 of the space */
+  }
+
+  aside {
+    flex: 1; /* Sidebar takes up 1/4 of the space */
+  }
+
+  p {
+    max-width: 45%;
+    line-height: 1.25rem;
+  }
+
+  .largeDisplayText {
+    font-size: 2rem;
+    font-weight: lighter;
+    line-height: normal;
+
+    max-width: 70%;
+
+    color: #1818f9;
+    text-decoration: none;
+
+    /* This applies the loaded font. It falls back to a generic serif if the font fails to load. */
+    font-family: 'PP Eiko', serif;
+  }
+
+  /* --- Two Column Grid --- */
+  .two-column-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 2rem; /* Space between columns */
+  }
+
+  .two-column-grid-2_1_split {
+    display: grid;
+    grid-template-columns: 2fr 1fr; /* 2:1 column ratio */
+    gap: 2rem; /* Space between columns */
+  }
+
+  .paragraph_2 {
+    max-width: 75%;
+    line-height: 1.25rem;
+  }
+
+}
+
+/* --- Desktop Styles --- */
+/* Applies to screens 1024px and wider */
+@media (min-width: 1024px) {
+  .page-wrapper {
+    max-width: 1200px; /* Constrain width on very large screens */
+    margin: 0 auto;
+    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+  }
+
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  p {
+    max-width: 100%;
+    line-height: 1.25rem;
+  }
+
+  .pSubtext {
+    font-size: 0.75rem;
+    line-height: 1rem;
+    max-width: 80%;
+  }
+
+  .paragraph {
+    max-width: 50%;
+    line-height: 1.25rem;
+  }
+
+  .workHeaderLength {
+    max-width: 40%;
+    line-height: 1.25rem;
+  }
+
+  .largeDisplayText {
+    font-size: 2rem;
+    font-weight: lighter;
+
+    max-width: 50%;
+  }
+  
+}
+
+@media (min-width: 1080px) {
+  .case-study {
+    flex-direction: row; /* Side-by-side on larger screens // 768px */
+    gap: 2rem;
+  }
+}
