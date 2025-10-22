@@ -138,4 +138,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
     backgroundObserver.observe(slideUpSection);
   }
+
+  // --- Lightbox Functionality ---
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightbox-img');
+  const closeBtn = document.querySelector('.lightbox-close');
+
+  if (lightbox && lightboxImg && closeBtn) {
+    // Select the <a> tags that have the lightbox-trigger class
+    const triggerLinks = document.querySelectorAll('a.lightbox-trigger');
+
+    triggerLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault(); // Prevent default link behavior
+        lightbox.style.display = 'block';
+        lightboxImg.src = link.querySelector('img').src; // Get the src from the img inside the clicked link
+        document.body.style.overflow = 'hidden'; // Prevent background scrolling
+      });
+    });
+
+    // Function to close the lightbox
+    const closeLightbox = () => {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto'; // Restore scrolling
+    };
+
+    // Close on 'x' button click
+    closeBtn.addEventListener('click', closeLightbox);
+
+    // Close on background click
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) { // Only close if the background is clicked, not the image
+        closeLightbox();
+      }
+    });
+  }
 });

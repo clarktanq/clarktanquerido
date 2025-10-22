@@ -91,6 +91,7 @@ h3 {
 .largeDisplayText {
   font-size: 2rem;
   font-weight: lighter;
+  line-height: normal;
 
   max-width: 90%;
 
@@ -106,11 +107,19 @@ h3 {
   padding-top: 0rem;
 }
 
+.h2_blue {
+  color: #1818f9;
+}
+
 .homepageSPACER {
   margin-top: 50vh;
 }
 
 .noTopMargin {
+  margin-top: -0.5rem;
+}
+
+.p_noTopMargin {
   margin-top: -0.5rem;
 }
 
@@ -308,7 +317,7 @@ aside {
 .slide-up-section {
   position: relative; /* This section now scrolls normally */
   background-color: #ffffff; /* Changed to black */
-  color: #ffffff; /* Changed text color to white */
+  color: #000000; /* Changed text color to white */
   z-index: 2; /* It must have a higher z-index to slide OVER the sticky video */
   padding: 2rem 2rem 2rem 2rem; /* Consistent padding inside the sticky section */
   margin: 0 -2rem -2rem -2rem;
@@ -316,9 +325,9 @@ aside {
 }
 
 /* Ensure all text elements inside the slide-up section are white */
-.slide-up-section h2, .slide-up-section h3, .slide-up-section p, .slide-up-section li {
+/* .slide-up-section h2, .slide-up-section h3, .slide-up-section p, .slide-up-section li {
   color: #000000;
-}
+} */
 
 /* Add a shadow to the slide-up section, similar to case-study-body */
 .slide-up-section::before {
@@ -516,4 +525,72 @@ aside {
 /* Muted state: Muted icon (speaker with a slash) */
 .mute-unmute-icon.is-muted {
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffffff'%3E%3Cpath d='M16.5 12c0-1.77-1.02-3.29-2.5-4.03v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06c1.38-.31 2.63-.95 3.69-1.81L19.73 21 21 19.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z'/%3E%3C/svg%3E");
+}
+
+/* --- Design Quality Box --- */
+.design-quality-box {
+  background-color: #1818f9;
+  border: 1px solid #1818f9; /* Blue outline */
+  color: #ffffff; /* Black text */
+  padding: 0.5rem 1rem; /* Reduced top/bottom padding */
+  border-radius: 20px;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.design-quality-box h3,
+.design-quality-box p {
+  color: #ffffff; /* Ensure text inside is black */
+  margin-top: 0.5rem; /* Consistent vertical spacing */
+  margin-bottom: 0.5rem;
+}
+
+.grid-image-equal-height {
+  height: 100%; /* Make the image fill the height of its parent */
+  object-fit: cover; /* Cover the area, cropping if necessary, maintaining aspect ratio */
+}
+
+/* --- Lightbox Styles --- */
+.lightbox-trigger {
+  cursor: pointer; /* Indicates the image is clickable */
+  transition: opacity 0.2s ease-in-out;
+}
+
+.lightbox-trigger:hover {
+  opacity: 0.8;
+}
+
+.lightbox-container {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 9999; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.85); /* Black w/ opacity */
+}
+
+.lightbox-content {
+  margin: auto;
+  display: block;
+  width: auto;
+  max-width: 90%;
+  max-height: 90vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+  cursor: pointer;
 }
