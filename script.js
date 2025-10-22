@@ -2,6 +2,11 @@ document.addEventListener('DOMContentLoaded', () => {
   const header = document.querySelector('header');
   const progressBar = document.getElementById('progressBar');
   const progressText = document.getElementById('progressText');
+  const pillContainer = document.querySelector('h1.largeDisplayText');
+
+  let activeClones = []; // Keep track of the clones we create
+  let isAnimating = false; // Prevent re-triggering while animation is in progress
+  let pillObserver; // Declare here to be accessible in updateOnScroll
 
   let isTicking = false;
 
@@ -54,6 +59,98 @@ document.addEventListener('DOMContentLoaded', () => {
   }, observerOptions);
 
   caseStudies.forEach(card => observer.observe(card));
+
+  // Intersection Observer for pill shake animation
+
+  if (pillContainer) {
+    pillObserver = new IntersectionObserver((entries, observer) => {
+      // If the animation is already running, don't do anything.
+      // This prevents conflicts when scrolling quickly.
+      if (isAnimating) return;
+
+      entries.forEach(entry => {
+        // When scrolling into view from the top, and not already animating
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6 && !isAnimating) {
+          isAnimating = true;
+          const pills = Array.from(entry.target.querySelectorAll('.highlight-pill'));
+          let stackedHeight = 0;
+          const academicProjectsHeader = document.querySelector('h2.homepageSPACER');
+          const boundaryRect = academicProjectsHeader ? academicProjectsHeader.getBoundingClientRect() : null;
+          const boundaryTop = boundaryRect ? boundaryRect.top : window.innerHeight; // Fallback to bottom of screen if header not found
+
+          // Clear any previous clones, just in case.
+          activeClones.forEach(c => c.remove());
+          activeClones = [];
+
+          // Ensure original pills are visible before we start
+          pills.forEach(pill => pill.classList.remove('is-falling'));
+
+          pills.forEach((pill, index) => {
+            // Hide the original pill
+            pill.classList.add('is-falling');
+
+            // 1. Create a clone
+            const clone = pill.cloneNode(true);
+            clone.classList.remove('is-falling'); // Ensure clone is visible
+            clone.classList.add('falling-pill-clone');
+
+            // 2. Get original position
+            const rect = pill.getBoundingClientRect();
+
+            // 3. Position clone exactly over the original
+            clone.style.top = `${rect.top}px`;
+            clone.style.left = `${rect.left}px`;
+            clone.style.width = `${rect.width}px`;
+            clone.style.height = `${rect.height}px`;
+            clone.style.margin = '0'; // Reset margin for fixed positioning
+
+            document.body.appendChild(clone);
+            // Add the clone to our list for cleanup later
+            activeClones.push(clone);
+
+            // 4. Calculate final destination
+            const pillHeight = rect.height;
+            const finalTop = boundaryTop - stackedHeight - pillHeight; // Stack upwards from the boundary
+            
+            // Update stacked height for the next pill
+            stackedHeight += pillHeight + 5; // Add a small gap to prevent overlap from rotation
+
+            // 5. Animate using a timeout for a staggered effect
+            setTimeout(() => {
+              // Set the final transform to trigger the CSS transition.
+              const randomRotation = Math.random() * 12 - 6; // Random angle between -6 and +6 deg
+              const randomXOffset = Math.random() * 20 - 10; // Random horizontal shift between -10px and +10px
+              const finalTransform = `translateY(${finalTop - rect.top}px) translateX(${randomXOffset}px) rotate(${randomRotation}deg)`;
+              clone.style.transform = finalTransform;
+
+            }, index * 200); // 200ms delay between each pill
+          });
+
+          // After all pills have fallen and stacked, wait a few seconds, then clean up.
+          const fallDuration = 1000; // From the CSS transition
+          const staggerDuration = pills.length * 200;
+          const waitDuration = 2000; // 2 seconds
+          const totalAnimationTime = staggerDuration + fallDuration + waitDuration;
+
+          setTimeout(() => {
+            // Remove all the clones from the page
+            activeClones.forEach(clone => clone.remove());
+            activeClones = [];
+            // Make the original pills visible again and reset the animation state.
+            const originalPills = pillContainer.querySelectorAll('.highlight-pill');
+            originalPills.forEach(pill => pill.classList.remove('is-falling'));
+            isAnimating = false;
+          }, totalAnimationTime);
+        }
+      });
+    }, {
+      root: null,
+      threshold: 0.6 // Trigger when 60% of the element is visible
+    });
+
+    pillObserver.observe(pillContainer);
+  }
+
 
   // Click-to-play/pause functionality for project videos
   const projectVideos = document.querySelectorAll('.project-video');

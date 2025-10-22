@@ -25,7 +25,33 @@
 
     max-width: 70%;
 
-    color: #1818f9;
+    color: #000000;
+    text-decoration: none;
+
+    /* This applies the loaded font. It falls back to a generic serif if the font fails to load. */
+    font-family: 'PP Eiko', serif;
+  }
+
+  .falling-pill-clone {
+  position: fixed; /* Position relative to the viewport */
+  z-index: 1000;
+  /* Use transition for smooth movement */
+  /* Apply font styles from the original to match the look */
+  font-family: 'PP Eiko', serif;
+  font-weight: lighter;
+  font-size: 2rem;
+  transition: transform 1s ease-in;
+  /* The 'ease-in' curve creates a natural falling acceleration */
+}
+
+  .largeDisplayText2 {
+    font-size: 2rem;
+    font-weight: lighter;
+    line-height: normal;
+
+    max-width: 70%;
+
+    color: #000000;
     text-decoration: none;
 
     /* This applies the loaded font. It falls back to a generic serif if the font fails to load. */

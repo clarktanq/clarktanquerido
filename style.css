@@ -89,9 +89,23 @@ h3 {
 
 /* --- Large display text --- */
 .largeDisplayText {
+  font-size: 1rem;
+  font-weight: lighter;
+  line-height: 1.6;
+
+  max-width: 90%;
+
+  color: #000000;
+  text-decoration: none;
+
+  /* This applies the loaded font. It falls back to a generic serif if the font fails to load. */
+  font-family: 'PP Eiko', serif;
+}
+
+.largeDisplayText2 {
   font-size: 2rem;
   font-weight: lighter;
-  line-height: normal;
+  line-height: 1.6;
 
   max-width: 90%;
 
@@ -144,6 +158,50 @@ h3 {
   color: #1818f9;
   font-weight: normal;
 }
+
+.highlight-pill {
+  display: inline-flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically center the text */
+  justify-content: center; /* Horizontally center the text */
+  font-style: normal; /* Override any inherited italic styles */
+  margin: 0.2em 0; /* Add some vertical margin */
+  color: #1818f9;
+  background-color: white;
+  padding: 0.2em 1.5em; /* Adjust padding for better balance */
+  border: 1px solid #1818f9;
+  border-radius: 999px; /* Creates the pill shape */
+  line-height: 1; /* Set line-height to 1 as flexbox now handles alignment */
+  white-space: nowrap; /* Prevent text inside the pill from wrapping */
+}
+
+/* Hide original pill when its clone is animating */
+.highlight-pill.is-falling {
+  visibility: hidden;
+}
+
+/* --- Animation for Pills --- */
+/* This will be the "clone" that actually falls */
+.falling-pill-clone {
+  position: fixed; /* Position relative to the viewport */
+  z-index: 1000;
+  /* Use transition for smooth movement */
+  /* Apply font styles from the original to match the look */
+  font-family: 'PP Eiko', serif;
+  font-weight: lighter;
+  font-size: 1rem;
+  transition: transform 1s ease-in;
+  /* The 'ease-in' curve creates a natural falling acceleration */
+}
+
+@keyframes tipOver {
+  to {
+    /* Fall down and off the screen while rotating */
+    transform: translateY(110vh) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+/* --- End Animation --- */
 
 /* --- [END] Large display text [END] --- */
 
