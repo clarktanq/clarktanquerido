@@ -85,11 +85,15 @@ h3 {
     font-size: 0.75rem;
 }
 
+.h2_homepage_small {
+  font-size: 0.75rem;
+}
+
 
 
 /* --- Large display text --- */
 .largeDisplayText {
-  font-size: 1rem;
+  font-size: 2rem;
   font-weight: lighter;
   line-height: 1.6;
 

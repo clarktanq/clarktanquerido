@@ -89,6 +89,42 @@
     gap: 0.75rem; /* Space between columns */
   }
 
+  .three-column-grid-3_5_2_split {
+    display: grid;
+    grid-template-columns: 3fr 5fr 2fr; /* Three equal columns */
+    gap: 0.75rem; /* Space between columns */
+  }
+
+  .three-row-grid {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 0.75rem;
+  }
+
+  .project-list-grid {
+    display: grid;
+    grid-template-columns: 3fr 5fr 2fr;
+    gap: 1rem 2rem; /* 1rem row-gap, 2rem column-gap */
+    align-items: start; /* Align items to the start of each grid cell */
+    margin-bottom: 2rem; /* Add some space below the grid */
+  }
+
+  .intro-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90vh; /* Adjust as needed */
+    margin-bottom: 2rem;
+  }
+
+  .project-list-headers {
+    display: grid;
+    grid-template-columns: 3fr 5fr 2fr;
+    gap: 1rem 2rem;
+    width: 100%;
+  }
+
+
   .two-column-grid-lupton {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Two equal columns */
@@ -154,7 +190,7 @@
     font-size: 2rem;
     font-weight: lighter;
 
-    max-width: 75%;
+    max-width: 50%;
   }
   
 }
