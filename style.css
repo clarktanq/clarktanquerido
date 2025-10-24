@@ -87,9 +87,63 @@ h3 {
 
 .h2_homepage_small {
   font-size: 0.75rem;
+  font-weight: normal;
+  margin: 0; /* Remove default h2 margin */
 }
 
+.h2_homepage_small2 {
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
 
+.h2_homepage_small:last-child {
+  display: flex;
+  justify-content: flex-end; /* Align button to the right */
+  align-items: center;
+}
+
+.intro-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh; /* Fill the entire viewport height */
+    margin-bottom: 2rem;
+    /* color: #ffffff; */
+  }
+
+.project-list-headers {
+  display: grid;
+  grid-template-columns: 3fr 5fr 2fr;
+  gap: 1rem 2rem;
+  margin: 0 0;
+  width: 100%;
+}
+
+.header-divider {
+  border: none;
+  height: 1px;
+  background-color: #333; /* Or your preferred color */
+  margin: 0rem; /* Reset margin */
+}
+
+.sticky-header-container {
+  position: sticky;
+  top: 0;
+  background-color: #ffffff; /* Match page background */
+  z-index: 10;
+  scroll-margin-top: 1rem; /* Offset for smooth scrolling */
+}
+
+.scroll-down-btn {
+  color: #333;
+  margin: 0rem;
+}
+
+.scroll-down-btn svg {
+  width: 24px;
+  height: 24px;
+}
 
 /* --- Large display text --- */
 .largeDisplayText {

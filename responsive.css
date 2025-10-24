@@ -192,6 +192,14 @@
 
     max-width: 50%;
   }
+
+  .intro-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 90vh; /* Adjust as needed */
+    margin-bottom: 2rem;
+  }
   
 }
 
