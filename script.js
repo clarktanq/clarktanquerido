@@ -16,7 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.scrollY > 0) {
       header.classList.add('scrolled');
     } else {
+      // When at the top, always show the header
       header.classList.remove('scrolled');
+      header.classList.remove('hidden');
     }
 
     // Progress circle logic
@@ -39,6 +41,20 @@ document.addEventListener('DOMContentLoaded', () => {
       isTicking = true;
     }
   });
+
+  // --- Autohide Header Logic ---
+  // Show header when mouse is near the top of the screen
+  document.addEventListener('mousemove', (e) => {
+    // Only apply this logic if the user has scrolled down
+    if (header.classList.contains('scrolled')) {
+      if (e.clientY < 60) { // If mouse is in the top 60px
+        header.classList.remove('hidden');
+      } else {
+        header.classList.add('hidden');
+      }
+    }
+  });
+
 
   // Intersection Observer for fade-in animations
   const caseStudies = document.querySelectorAll('.case-study');

@@ -32,6 +32,10 @@
     font-family: 'PP Eiko', serif;
   }
 
+  .intro-content-width {
+    max-width: 85%;
+  }
+
   .falling-pill-clone {
   position: fixed; /* Position relative to the viewport */
   z-index: 1000;
@@ -112,8 +116,8 @@
   .intro-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    min-height: 90vh; /* Adjust as needed */
+    justify-content: flex-end;
+    min-height: 95vh; /* Adjust as needed */
     margin-bottom: 2rem;
   }
 
@@ -147,9 +151,11 @@
 /* Applies to screens 1024px and wider */
 @media (min-width: 1024px) {
   .page-wrapper {
-    max-width: 1200px; /* Constrain width on very large screens */
-    margin: 0 auto;
-    /* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+    /* Use a percentage-based width but cap it at a max-width. */
+    /* margin: 0 auto will center it once the max-width is reached. */
+    width: 90%; /* e.g., content takes up 90% of the screen */
+    max-width: 1440px; /* e.g., content stops growing at 1440px */
+    margin: 0 auto; /* This will create the growing side margins */
   }
 
   .footer-content {
@@ -186,6 +192,16 @@
     line-height: 1.25rem;
   }
 
+  .largeDisplayTextHome {
+    font-size: 4rem;
+    font-weight: lighter;
+
+    max-width: 50%;
+
+    /* This applies the loaded font. It falls back to a generic serif if the font fails to load. */
+    font-family: 'PP Eiko', serif;
+  }
+
   .largeDisplayText {
     font-size: 2rem;
     font-weight: lighter;
@@ -193,10 +209,14 @@
     max-width: 50%;
   }
 
+  .intro-content-width {
+    max-width: 100%;
+  }
+
   .intro-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end;
     min-height: 90vh;
     margin-bottom: 2rem;
   }

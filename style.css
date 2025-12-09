@@ -45,6 +45,27 @@ header {
   background-color: #ffffff;
   color: #ecf0f1;
   padding: 1rem;
+  position: sticky; /* Keep the header at the top */
+  top: 0;
+  z-index: 100; /* Ensure it's above other content */
+  transition: transform 0.3s ease-in-out; /* Smooth hide/show animation */
+}
+
+/* This class will be added by JS to hide the header when scrolling down */
+header.scrolled.hidden {
+  transform: translateY(-100%);
+}
+
+.header-full-width-divider {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100vw; /* 100% of the viewport width */
+  height: 1px;
+  background-color: #eee;
+  /* background-color: #000000; */
+  z-index: 101; /* Ensure it's above the header bg but can be below content if needed */
 }
 
 footer {
@@ -88,40 +109,59 @@ h3 {
 .h2_homepage_small {
   font-size: 0.75rem;
   font-weight: bold;
-  display: flex; /* Use flexbox for alignment */
-  align-items: center; /* Vertically center the text */
-  text-align: left; /* Keep text left-aligned */
-  margin: 0; /* Remove default h2 margin */
+  margin: 0; /* Remove default paragraph margin */
+  display: inline-flex; /* Use flex to align text and dot */
+  align-items: center; /* Vertically center items */
+  gap: 0.4rem; /* Space between text and dot */
 }
 
-.h2_homepage_small:last-child {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
+/* Target the last h2 in the project headers to right-align the scroll arrow */
+.project-list-headers .h2_homepage_small:last-child {
+  width: 100%; /* Ensure it fills the grid cell */
+  justify-content: flex-end; /* Align the flex content (the arrow) to the end */
+}
+
+.active-status-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  background-color: #2ecc71; /* A nice green color */
+  border-radius: 50%; /* Makes it a circle */
+  animation: pulse 2s infinite; /* Adds a subtle pulsing animation */
+}
+
+.intro-header-info {
+  display: flex; /* Arrange children (the two paragraphs) in a row */
+  justify-content: space-between; /* Push children to opposite ends */
+  align-items: center; /* Vertically align them if they have different heights */
+  /* margin-bottom: 1rem; */ /* This was creating the space above the h1. It can be adjusted or removed. */
 }
 
 .intro-section {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-end; /* Pushes content to the bottom of the section */
     min-height: 100vh; /* Fill the entire viewport height */
-    margin-bottom: 2rem;
-    /* color: #ffffff; */
-  }
+    /* The margin-bottom is no longer needed as the next section will scroll over it */
+    /* JS will handle positioning (fixed/relative) */
+}
+
+.intro-content-width {
+  /* This will be constrained by media queries in responsive.css */
+  max-width: 90%;
+}
 
 .project-list-headers {
   display: grid;
   grid-template-columns: 3fr 5fr 2fr;
   gap: 1rem 2rem;
   margin: 0 0;
-  width: 100%;
 }
 
 .header-divider {
   border: none;
   height: 1px;
   background-color: #333; /* Or your preferred color */
-  margin: 0rem; /* Reset margin */
 }
 
 .sticky-header-container {
@@ -188,6 +228,14 @@ h3 {
   margin-top: -0.5rem;
 }
 
+.noTopMargin_h1 {
+  margin-top: 0;
+}
+
+.topMargin_h1 {
+  margin-top: 0.5rem;
+}
+
 .p_noTopMargin {
   margin-top: -0.5rem;
 }
@@ -200,8 +248,8 @@ h3 {
   max-width: 80%;
 }
 
-.text-black {
-  color: #000;
+.text-blue {
+  color: #1818f9;
 }
 
 /* Specific override for HMW text max-width */
@@ -254,6 +302,12 @@ h3 {
     transform: translateY(110vh) rotate(180deg);
     opacity: 0;
   }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+  70% { box-shadow: 0 0 0 10px rgba(46, 204, 113, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
 }
 
 /* --- End Animation --- */
