@@ -1018,7 +1018,7 @@ aside {
 .row3-col1-content {
   grid-column: 1 / 2; /* Place in the first column */
   grid-row: 3 / 4;    /* Place in the third row */
-  align-self: end;    /* Align to the bottom of the cell */
+  align-self: start;    /* Align to the bottom of the cell */
   padding-bottom: 0rem;
 }
 
