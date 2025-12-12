@@ -843,14 +843,19 @@ aside {
 }
 
 .cursor-text {
-  display: inline-block;
-  padding: 0.5rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-width: 80px; /* Set a minimum size */
+  min-height: 80px; /* Set a minimum size */
+  padding: 1rem;
   background-color: #1818f9; /* Your theme's blue color */
   color: #ffffff; /* White text */
-  border-radius: 999px; /* Pill shape */
+  border: 1px solid #ffffff; /* White outline */
+  border-radius: 50%; /* Circle shape */
   font-size: 0.75rem;
   font-weight: bold;
-  white-space: nowrap;
 }
 
 /* A class to add a 'grow' effect on hover */
