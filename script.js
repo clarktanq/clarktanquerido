@@ -302,4 +302,81 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  // --- Custom Cursor Logic ---
+
+  // Animate grid lines on load for landingTest.html
+  const gridBackground = document.querySelector('.grid-background');
+  if (gridBackground) {
+    // Generate grid cells
+    const totalCells = 3 * 7; // 3 rows, 7 columns
+    for (let i = 0; i < totalCells; i++) {
+      const cell = document.createElement('div');
+      cell.classList.add('grid-cell');
+      gridBackground.appendChild(cell);
+    }
+
+    // Add the 'animate' class after a short delay to ensure CSS is rendered
+    setTimeout(() => {
+      gridBackground.classList.add('animate');
+      gridBackground.closest('.seven-column-grid').classList.add('animate');
+
+      // After the grid animation starts, wait for it to finish, then fade in content
+      // The longest animation is 0.8s duration + 0.8s delay = 1.6s
+      setTimeout(() => {
+        document.querySelectorAll('.grid-content').forEach(el => {
+          el.classList.add('visible');
+        });
+      }, 1700); // 1.7 seconds, just after the grid animation completes
+    }, 100); // 100ms delay to start grid animation
+  }
+  const cursor = document.querySelector('.custom-cursor');
+  const cursorText = cursor.querySelector('.cursor-text');
+  let isCursorVisible = false;
+
+  // Function to update cursor text
+  const updateCursorText = (text) => {
+    cursorText.textContent = text;
+    cursorText.setAttribute('data-text', text); // Set data-attribute for glitch effect
+  };
+
+  // Set default text
+  updateCursorText('Scroll');
+
+  // Update cursor position
+  document.addEventListener('mousemove', (e) => {
+    if (!isCursorVisible) {
+      cursor.classList.add('visible');
+      isCursorVisible = true;
+    }
+    cursor.style.left = `${e.clientX}px`;
+    cursor.style.top = `${e.clientY}px`;
+  });
+
+  // Hide cursor when leaving the window
+  document.addEventListener('mouseleave', () => {
+    cursor.classList.remove('visible');
+    isCursorVisible = false;
+  });
+
+  // Define interactive elements and their cursor text
+  const interactiveElements = [
+    { selector: 'a.case-study-link', text: 'View Project' },
+    { selector: 'a.btn-case-study', text: 'Go Back' },
+    { selector: '.video-container', text: 'Play' },
+    { selector: '.lightbox-trigger', text: 'View Image' },
+    { selector: 'a:not(.case-study-link):not(.btn-case-study):not(.lightbox-trigger)', text: 'Navigate' },
+    { selector: '.lightbox-close', text: 'Close' }
+  ];
+
+  interactiveElements.forEach(({ selector, text }) => {
+    document.querySelectorAll(selector).forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        updateCursorText(text);
+      });
+      el.addEventListener('mouseleave', () => {
+        updateCursorText('Scroll'); // Revert to default
+      });
+    });
+  });
 });

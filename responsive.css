@@ -220,6 +220,15 @@
     min-height: 90vh;
     margin-bottom: 2rem;
   }
+
+  /* Constrain the seven-column grid to the page wrapper width on large screens */
+  .full-height-page .seven-column-grid {
+    position: fixed;
+    width: calc(100% - 2rem); /* Account for the body padding */
+    max-width: 1440px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
   
 }
 
