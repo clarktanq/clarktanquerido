@@ -848,14 +848,15 @@ aside {
   align-items: center;
   text-align: center;
   min-width: 60px; /* Set a minimum size */
-  aspect-ratio: 1 / 1; /* Ensure it's always a circle */
+  aspect-ratio: 1 / 1; /* Ensure it's always a square */
   padding: 1rem 10px; /* Add space around the text, with 20px on left/right */
   background-color: #1818f9; /* Your theme's blue color */
   color: #ffffff; /* White text */
   border: 1px solid #ffffff; /* White outline */
-  border-radius: 50%; /* Circle shape */
+  border-radius: 0; /* Square shape */
   font-size: 0.5rem;
   font-weight: bold;
+  transition: transform 0.3s ease-out; /* Add transition for smooth rotation */
 }
 
 /* A class to add a 'grow' effect on hover */
